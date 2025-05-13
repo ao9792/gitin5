@@ -1,11 +1,23 @@
-console.log('Webpack är igång!');
-const path = require('path');
+import { stack } from './stack';
 
-module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-  mode: 'development',
-};
+document.getElementById('peek').addEventListener('click', () => {
+  alert(stack.peek() || 'Stacken är tom');
+});
+
+document.getElementById('pop').addEventListener('click', () => {
+  const value = stack.pop();
+  alert(value || 'Stacken är redan tom');
+  updateDisplay();
+});
+
+document.getElementById('push').addEventListener('click', () => {
+  const value = prompt('Vad vill du pusha till stacken?');
+  if (value) {
+    stack.push(value);
+    updateDisplay();
+  }
+});
+
+function updateDisplay() {
+  document.getElementById('top_of_stack').textContent = stack.peek() || 'n/a';
+}

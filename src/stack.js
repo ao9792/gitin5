@@ -1,15 +1,7 @@
-const _ = require('underscore');
-
-let stack = [];
-
-exports.push = function (x) {
-    stack.push(x);
-};
-
-exports.pop = function () {
-    return stack.pop();
-};
-
-exports.peek = function () {
-    return _.last(stack); // ← rätt version!
-};
+export const stack = {
+    items: [],
+    push(item) { this.items.push(item); },
+    pop() { return this.items.pop(); },
+    peek() { return this.items[this.items.length - 1]; },
+  };
+  
